@@ -199,7 +199,7 @@ session_start();
                   </li>
                 </ul>
               </li>
-              <li>
+              <!-- <li>
                 <a href class="auto">      
                   <span class="pull-right text-muted">
                   <b class="badge bg-info pull-right">P</b>
@@ -219,7 +219,7 @@ session_start();
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> -->
             <?php }
             ?>
               <li ui-sref-active="active">

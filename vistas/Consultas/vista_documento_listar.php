@@ -5,21 +5,23 @@
         <h2><b>CONSULTAS REGISTRADAS</b></h2>            
     </div>
     <div class="panel-body">
-        <div class="col-md-8"> 
+        <div class="col-md-6"> 
           <div class=" input-group">
             <input id="txt_documento_vista" type="text" class="form-control" onkeypress="return soloLetras(event)"  placeholder="Ingrese el c&oacute;digo del documento a buscar ">
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
           </div>
         </div>
         <div class="col-md-2">
-          <button class="btn btn-danger" onclick="cargar_contenido('main-content','Consultas/vista_documento_registrar.php');"><i class="fa fa-file-text" ></i> &nbsp;&nbsp;<strong>Nuevo Consulta</strong></button>    
+          <button class="btn btn-primary" onclick="cargar_contenido('main-content','Consultas/vista_documento_registrar.php');"><i class="fa fa-file-text" ></i> &nbsp;&nbsp;<strong>Nueva Consulta</strong></button>    
         </div>
         <div class="col-md-2">
-          <button class="btn btn-danger" onclick="cargar_contenido('main-content','Consultas/vista_reporte_por_dia.php');"><i class="fa fa-file-text" ></i> &nbsp;&nbsp;<strong>Reporte Agrupado</strong></button>    
+          <button class="btn btn-secondary" onclick="cargar_contenido('main-content','Consultas/vista_reporte_por_dia.php');"><i class="fa fa-file-text" ></i> &nbsp;&nbsp;<strong>Reporte Agrupado</strong></button>    
         </div>
-        <div class="col-md-2">
-          <button class="btn btn-danger" onclick="cargar_contenido('main-content','Consultas/reporte_excel.php');"><i class="fa fa-file-text" ></i> &nbsp;&nbsp;<strong>Reporte Excel</strong></button>   <br>
-          <button class="btn btn-danger" onclick="cargar_contenido('main-content','Consultas/reporte_pdf.php');"><i class="fa fa-file-text" ></i> &nbsp;&nbsp;<strong>Reporte PDF</strong></button>   <br> 
+        <div class="col-md-6">
+          <button class="btn btn-danger" onclick="cargar_contenido('main-content','Consultas/reporte_excel.php');"><i class="fa fa-file-text" ></i> &nbsp;&nbsp;<strong>Reporte Excel</strong></button>
+       </div>
+        <div class="col-md-6">
+           <button class="btn btn-danger" onclick="cargar_contenido('main-content','Consultas/reporte_pdf.php');"><i class="fa fa-file-text" ></i> &nbsp;&nbsp;<strong>Reporte PDF</strong></button> 
         </div>
         <div class="col-md-12">
           <div class="box-body table-responsive" style="text-align: center;"><br>

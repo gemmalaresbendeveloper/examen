@@ -55,12 +55,12 @@
             <div class="col-md-10">
               <label>Fecha nacimiento paciente:</label>
 
-              <input type="text" value="" name="fecha_paciente" id="fecha_paciente" onchange="fechaEdad(this.value)">
+              <input type="text" value="" name="fecha_paciente"  placeholder="AAAA/MM/DD"  id="fecha_paciente" onchange="fechaEdad(this.value)" class="form-control">
               <!-- <br><button class="btn btn-success" onclick="calcularEdad()"><strong> calcular</strong></button><br><br> -->
             </div>
             <div class="col-md-2">
               <label>Edad</label>
-              <input type="text" id="txtEdadPaciente" name="txtEdadPaciente"   style="color: rgb(25,25,51); background-color: rgb(255,255,255) solid 5px;color:#9B0000; text-align:center;font-weight: bold;" class="form-control"><br>
+              <input type="text" id="txtEdadPaciente" name="txtEdadPaciente"  style="color: rgb(25,25,51); background-color: rgb(255,255,255) solid 5px;color:#9B0000; text-align:center;font-weight: bold;" class="form-control"><br>
           
             </div>
           </div>
@@ -98,8 +98,6 @@ Listar_diagnostico_combo();
 <script type="text/javascript">
 
 function fechaEdad(fecha){
-  console.log("fecha " + fecha );
-  // var fecha = $("#fecha_paciente").val();
 
 var hoy = new Date();
 var cumpleanos = new Date(fecha);
@@ -109,10 +107,10 @@ var m = hoy.getMonth() - cumpleanos.getMonth();
 if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
     edad--;
 }
-
-return edad;
-console.log(edad);
-document.querySelector("#txtEdadPaciente").textContent = calcularEdad(fecha);
+var inputNombre = document.getElementById("txtEdadPaciente");
+inputNombre.value = edad;
+// // document.querySelector("#txtEdadPaciente").textContent = calcularEdad(fecha);
+// document.querySelector("#txtEdadPaciente").textContent = edad;
 
 }
 
