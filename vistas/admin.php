@@ -8,7 +8,7 @@ session_start();
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Sistema Documentario | Panel</title>
+  <title>Sistema PHPGemma | Panel</title>
   <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="_recursos/css/bootstrap.css" type="text/css" />
@@ -19,10 +19,10 @@ session_start();
   <link rel="stylesheet" href="_recursos/css/app.css" type="text/css" />
   <link rel="stylesheet" href="_recursos/js/sweetalert.css">
   <link href="_recursos/css/customs.css" rel="stylesheet">
-  <script src="../vistas/Highcharts-6.1.1/code/highcharts.js"></script>
+  <!-- <script src="../vistas/Highcharts-6.1.1/code/highcharts.js"></script>
   <script src="../vistas/Highcharts-6.1.1/code/highcharts-3d.js"></script>
   <script src="../vistas/Highcharts-6.1.1/code/modules/exporting.js"></script>
-  <script src="../vistas/Highcharts-6.1.1/code/modules/export-data.js"></script>
+  <script src="../vistas/Highcharts-6.1.1/code/modules/export-data.js"></script> -->
   <script src="_recursos/js/jquery.min.js"></script>
   <script type="text/javascript" src="_recursos/js/Consola_Asistencia.js"></script>
   <script type="text/javascript" src="_recursos/js/consola_usuario.js"></script>
@@ -77,7 +77,7 @@ session_start();
 
                 <div>
                     <a ui-sref="app.dashboard-v1"onclick="cargar_contenido('main-content','Verificar_documento/vista_verificardocumento_listar.php');">
-                     <h4><strong>Documentos</strong> </h4>
+                      <h4><strong>Notificaciones</strong> </h4>
                     </a>
                 </div>
               </li>
@@ -165,25 +165,40 @@ session_start();
               <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
                 <span translate="aside.nav.HEADER">PANEL ADMINISTRATIVO</span>
               </li>
-              <!-- <li>
+            <?php if ($_SESSION['usu']=="ADMINISTRADOR") {        
+            ?>
+              <li>
                 <a href class="auto">      
                   <span class="pull-right text-muted">
-                  <b class="badge bg-info pull-right">M</b>
+                  <b class="badge bg-info pull-right">P</b>
                   </span>
-                  <i class="fa fa-laptop icon text-success"></i>
-                  <span class="font-bold" translate="aside.nav.Mantenimiento">MANTENIMIENTO</span>
+                  <i class="glyphicon glyphicon-user icon text-info-lter"></i>
+                  <span class="font-bold" translate="aside.nav.Mantenimiento">MÉDICOS</span>
                 </a>
                 <ul class="nav nav-sub dk">
                   <li ui-sref-active="active">
-                    <a  onclick="abrirmodaladministrativo()">
-                    <span>Usuario</span>
+                    <a ui-sref="app.dashboard-v1" onclick="cargar_contenido('main-content','Medicos/vista_registrar_personal.php');">
+                    <span>Nuevo Médico</span>
                     </a>
                   </li>
-                  
                 </ul>
-              </li> -->
-            <?php if ($_SESSION['usu']=="ADMINISTRADOR") {        
-            ?>
+              </li>
+              <li>
+                <a href class="auto">      
+                  <span class="pull-right text-muted">
+                  <b class="badge bg-info pull-right">P</b>
+                  </span>
+                  <i class="glyphicon glyphicon-user icon text-info-lter"></i>
+                  <span class="font-bold" translate="aside.nav.Mantenimiento">PACIENTES</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                  <li ui-sref-active="active">
+                    <a ui-sref="app.dashboard-v1" onclick="cargar_contenido('main-content','Pacientes/vista_registrar_personal.php');">
+                    <span>Nuevo paciente</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
               <li>
                 <a href class="auto">      
                   <span class="pull-right text-muted">
@@ -207,138 +222,26 @@ session_start();
               </li>
             <?php }
             ?>
-              <li>
-                <a href class="auto">      
-                  <span class="pull-right text-muted">
-                  <b class="badge bg-info pull-right">C</b>
-                  </span>
-                  <i class="fa fa-briefcase icon text-info-lter text-success"></i>
-                  <span class="font-bold" translate="aside.nav.Mantenimiento">CIUDADANO</span>
-                </a>
-                <ul class="nav nav-sub dk">
-                  <li ui-sref-active="active" onclick="cargar_contenido('main-content','Ciudadano/vista_listar_ciudadano.php');">
-                    <a ui-sref="app.dashboard-v2">
-                    <span>Listar Ciudadano</span>
-                    </a>
-                  </li>
-                  <li ui-sref-active="active">
-                    <a ui-sref="app.dashboard-v1" onclick="cargar_contenido('main-content','Ciudadano/vista_registrar_ciudadano.php');">
-                    <span>Nuevo Ciudadano</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href class="auto">      
-                  <span class="pull-right text-muted">
-                  <b class="badge bg-info pull-right">I</b>
-                  </span>
-                  <i class="fa fa-folder-open icon text-info-lter"></i>
-                  <span class="font-bold" translate="aside.nav.Mantenimiento">INSTITUCIÓN</span>
-                </a>
-                <ul class="nav nav-sub dk">
-                  <li ui-sref-active="active"onclick="cargar_contenido('main-content','Institucion/vista_institucion_listar.php');">
-                    <a ui-sref="app.dashboard-v2">
-                    <span>Listar Instituci&oacute;n</span>
-                    </a>
-                  </li>
-                  <li ui-sref-active="active">
-                    <a ui-sref="app.dashboard-v1"onclick="cargar_contenido('main-content','Institucion/vista_institucion_registrar.php');">
-                    <span>Nueva Instituci&oacute;n</span>
-                    </a>
-                  </li>
-                  
-                </ul>
-              </li>
-              <!-- <li>
-                <a href class="auto">      
-                  <span class="pull-right text-muted">
-                  <b class="badge bg-info pull-right">A</b>
-                  </span>
-                  <i class="fa fa-list icon text-success"></i>
-                  <span class="font-bold">&Aacute;REA</span>
-                </a>
-                <ul class="nav nav-sub dk">
-                  <li ui-sref-active="active"onclick="cargar_contenido('main-content','Area/vista_area_listar.php');">
-                    <a ui-sref="app.dashboard-v2">
-                    <span>Listar &Aacute;reas</span>
-                    </a>
-                  </li>
-                  <li ui-sref-active="active"onclick="cargar_contenido('main-content','Area/vista_area_registrar.php');">
-                    <a ui-sref="app.dashboard-v2">
-                    <span>Nueva &Aacute;rea</span>
-                    </a>
-                  </li>
-                </ul>
-              </li> -->
               <li ui-sref-active="active">
                 <a ui-sref="app.mail.list">
                   <b class="badge bg-info pull-right">D</b>
                   <i class="fa fa-file-text icon text-info-lter"></i>
-                  <span class="font-bold" translate="aside.nav.Venta">DOCUMENTO</span>
+                  <span class="font-bold" translate="aside.nav.Venta">CONSULTAS</span>
                 </a>
                <ul class="nav nav-sub dk">
                   <li ui-sref-active="active">
-                    <a ui-sref="app.mail.list" onclick="cargar_contenido('main-content','Documento/vista_documento_listar.php')">
-                    <span>Listar Documento</span>
+                    <a ui-sref="app.mail.list" onclick="cargar_contenido('main-content','Consultas/vista_documento_listar.php')">
+                    <span>Listar Consultas</span>
                     </a>
                   </li>
                   <li ui-sref-active="active">
-                    <a ui-sref="app.dashboard-v2 "onclick="cargar_contenido('main-content','Documento/vista_documento_registrar.php')">
-                    <span>Nuevo Documento</span>
+                    <a ui-sref="app.dashboard-v2 "onclick="cargar_contenido('main-content','Consultas/vista_documento_registrar.php')">
+                    <span>Nueva Consulta</span>
                     </a>
                   </li>
                 </ul>
               </li>
-               <!-- <li>
-                <a href class="auto">      
-                  <span class="pull-right text-muted">
-                  <b class="badge bg-info pull-right">TD</b>
-                  </span>
-                  <i class="fa fa-file icon text-success"></i>
-                  <span class="font-bold">T. DOCUMENTO</span>
-                </a>
-                <ul class="nav nav-sub dk">
-                  <li ui-sref-active="active">
-                    <a ui-sref="app.dashboard-v1"onclick="cargar_contenido('main-content','Tipo_Documento/vista_tipoDocumento_Listar.php');">
-                    <span>Lista de tipos de documentos</span>
-                    </a>
-                  </li>
-                  <li ui-sref-active="active"onclick="cargar_contenido('main-content','Tipo_Documento/vista_tipoDocumento_Registrar.php');">
-                    <a ui-sref="app.dashboard-v2">
-                    <span>Nuevo Tipo de documento</span>
-                    </a>
-                  </li>
-                </ul>
-                </li> -->
               <li class="line dk">
-              <!-- <li ui-sref-active="active">
-                <a ui-sref="app.calendar">
-                <span class="pull-right text-muted">
-                  <b class="badge bg-info pull-right">R</b>
-                  </span>
-                  <i class="glyphicon glyphicon-print icon text-info-lter"></i>
-                  <span class="font-bold" translate="aside.nav.Compra">REPORTES</span>
-                </a> 
-                <ul class="nav nav-sub dk">
-                    <li ui-sref-active="active"onclick="cargar_contenido('main-content','RangoFechas/vista_rangofechas_listar.php');">
-                      <a ui-sref="app.dashboard-v2">
-                        <span>Reportes de documentos - Rango Fechas</span>
-                      </a>
-                    </li>
-                    <li ui-sref-active="active" onclick="AbrirReporteInstitucion()"  >
-                      <a ui-sref="app.dashboard-v1">
-                      <span>Reportes de documentos institucionales</span>
-                      </a>
-                    </li>
-                    <li ui-sref-active="active"onclick="AbrirReporteCiudadano()">
-                      <a ui-sref="app.dashboard-v2">
-                      <span>Reporte de dcumento de personas</span>
-                      </a>
-                    </li>
-                </ul>
-              </li>           -->
-            
           </nav>
           <!-- nav -->
         </div>
@@ -512,98 +415,6 @@ session_start();
   </script>
 <div class="modal fade bs-example-modal-lg" id="modal_editar_adminsitrador" >
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-         <div class="modal-header">
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-           <h4 class="modal-title" id="myModalLabel"><label> EDITAR DATOS PERSONALES</label></h4>
-         </div>
-        <div class="modal-body">
-          <div class="contendor_kn">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <form method="POST" id="update-form-administrador">
-                  <div class="col-md-6">
-                    <input type="text" id="personal_id" name="personal_id" hidden value="<?php echo $_SESSION['codigo_personal']?>" >
-                    <label  class="col-sm-4 control-label">Nombres </label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control" onkeypress="return soloLetras(event)" name="nombres_personal" id="nombres_personal" placeholder="Ingrese Nombres" maxlength="">
-                      <br>
-                    </div>
-                    <label  class="col-sm-4 control-label">Apellido Paterno </label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control"onkeypress="return soloLetras(event)"  name="apePate_personal" id="apePate_personal" placeholder="Ingrese Apellido Paterno" maxlength="">
-                      <br>
-                    </div>
-                    <label  class="col-sm-4 control-label">Apellido Materno </label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control" onkeypress="return soloLetras(event)" name="apeMate_personal" id="apeMate_personal" placeholder="Ingrese Apelido Materno" maxlength="">
-                      <br>
-                    </div> 
-                  </div>
-                  <div class="col-md-6">
-                    <div class="col-sm-12" style="text-align:center">
-                      <label  class="control-label">Fotograf&iacute;a</label><br>
-                      <div id="txtimagen2">
-                        
-                      </div>                   
-                    </div>                 
-                  </div>
-                  <div class="col-md-12">
-                    <label  class="col-sm-2 control-label">Email </label>
-                    <div class="col-sm-4">
-                      <input type="email" class="form-control"  style="width: 94%"  name="email_personal" id="email_personal" placeholder="Ingrese email" maxlength="100">
-                      <br>
-                    </div> 
-                    <label  class="col-sm-2 control-label">Tel&eacute;fono </label>
-                    <div class="col-sm-4">
-                      <input type="text" class="form-control" onkeypress="return soloNumeros(event)"  name="telefono_personal" id="telefono_personal" placeholder="Ingrese nro telefóno" maxlength="9">
-                      <br>
-                    </div> 
-
-                    <label  class="col-sm-2 control-label">Movil </label>
-                    <div class="col-sm-4">
-                      <input type="text" style="width: 94%" class="form-control" name="movil_personal" id="movil_personal"  onkeypress="return soloNumeros(event)" placeholder="Ingrese nro movil" maxlength="9">
-                      <br>
-                    </div> 
-                    <label  class="col-sm-2 control-label">Direcci&oacute;n </label>
-                    <div class="col-sm-4">
-                      <input type="text"  class="form-control"  onkeypress="return soloLetras(event)" name="direccion_personal" id="direccion_personal" placeholder="Ingrese dirección" maxlength="200">
-                      <br>
-                    </div> 
-                    <label  class="col-sm-2 control-label">Fecha Nacimiento </label>
-                    <div class="col-sm-4">
-                      <div class=" input-group">
-                        <div class="input-group-addon">
-                          <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="date" style="width: 94%;padding: 0px 12px;"  id="fechanacimiento_personal"  name="fechanacimiento_personal"  class="form-control"  >
-                      </div>
-                    </div>
-                    <label  class="col-sm-2 control-label">DNI </label>
-                    <div class="col-sm-4">
-                      <input type="text"  class="form-control"  onkeypress="return soloNumeros(event)" name="dni_personal" id="dni_personal" placeholder="Ingrese DNI" maxlength="13">
-                      <br>
-                    </div> 
-                  </div>
-                  <div class="col-md-12 col-lg-12 col-xs-12" style="text-align:center;" >
-                    <br>
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-4" >
-                       <button class="btn btn-success"  style="width: 100%" ><span class="glyphicon glyphicon-floppy-saved" ></span>&nbsp;<b>Modificar Datos</b></button><br>
-                    </div>
-                    <div class="col-md-4">
-                    </div>
-                  </div>
-                </form> 
-              </div>         
-            </div>
-          </div>  
-        </div> 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-close"></i><strong> Close</strong></button>
-        </div> 
-    </div>
   </div> 
 </div>
 <div class="modal fade bs-example-modal-lg" id="modal_cuenta"  style="padding:50px 0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -616,7 +427,6 @@ session_start();
           <h4 class="modal-title" id="mimodal_registrar"><label>Configuraci&oacute;n de la Cuenta</label></h4>
         </div>
         <div class="modal-body">
-          <form class="form-horizontal" id="formulario_usuario">
               <div class="box-body">
                 <div class="" id="msj_persona">
                 </div>
@@ -669,39 +479,7 @@ session_start();
       </div>
     </div>
 <script type="text/javascript">
-  traer_administrador();
-    $(document).on('submit', '#update-form-administrador', function() { 
-      var data = $(this).serialize(); 
-      $.ajax({  
-        type : 'POST',
-        mimeType: "multipart/form-data",
-        url  : '../controlador/personal/controlador_editar_administrador.php',
-        data:  new FormData(this),
-        contentType: false,
-        cache: false,
-        processData:false,
-        success:function(resp) {
-          $("#modal_editar_adminsitrador").modal('hide');
-          traer_administrador();
-          document.getElementById("update-form-administrador").reset();
-          if(resp>0){
-            swal("Datos Actualizados","","success")
-            .then ( ( value ) =>  { 
-              document.getElementById("update-form-administrador").reset();
-              traer_administrador();
-            } ) ;
-          }else{
-            swal("Lo sentimos los datos no fueron registrados","","error")
-            .then ( ( value ) =>  { 
-              document.getElementById("update-form-administrador").reset();
-              traer_administrador();
-            } ) ;
-          }
-          traer_administrador();
-        }  
-      });
-      return false;
-    }); 
+  
 </script>
 
 </body>
